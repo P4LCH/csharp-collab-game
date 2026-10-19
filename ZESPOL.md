@@ -8,7 +8,7 @@ Autor zapisu TESTY.md: Nataniel Cichecki
 
 | Osoba | Sekcja | Branch | Osoba sprawdzająca |
 |---|---|---|---|
-| Jakub Paluszek | A | Section_A | Nataniel Cichecki |
+| Jakub Paluszek | A | feature/mapa | Nataniel Cichecki |
 | Szymon Kurek | B  | … | Jakub Paluszek |
 | Nataniel Cichecki| C | feature/akcje | Szymon Kurek |
 

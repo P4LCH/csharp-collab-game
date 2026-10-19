@@ -142,7 +142,7 @@ void Pomoc()
 void Mapa()
 {
     // TODO A3: petla for, numery 1..4, jeden znacznik aktualnego pokoju.ZROBIONE; DO TESTOW
-    Console.WriteLine("TODO A: mapa.");
+    // Console.WriteLine("TODO A: mapa.");
     for(int numer =1; numer<=4; numer = numer + 1)
     {
         string wiersz = numer + ". " + NazwaPokoju(numer);
@@ -216,7 +216,7 @@ void Rozejrzyj()
             Console.WriteLine("Czytnik nie ma prądu");
         }
     }
-    Console.WriteLine("TODO A: opis pokoju.");
+    // Console.WriteLine("TODO A: opis pokoju.");
 }
 
 // SEKCJA B: RUCH. Wlasciciel: osoba B.
