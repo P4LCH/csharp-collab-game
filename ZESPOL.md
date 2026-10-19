@@ -1,16 +1,16 @@
 # Umowa zespołu
 
-Nazwa zespołu: …
-Adres repozytorium: …
-Wspólny TargetFramework: …
-Lider pierwszej integracji: …
-Autor zapisu TESTY.md: …
+Nazwa zespołu: JSN
+Adres repozytorium: https://github.com/P4LCH/csharp-collab-game
+Wspólny TargetFramework: Dotnet 10.0
+Lider pierwszej integracji: Jakub Paluszek
+Autor zapisu TESTY.md: Nataniel Cichecki
 
 | Osoba | Sekcja | Branch | Osoba sprawdzająca |
 |---|---|---|---|
-| … | … | … | … |
-| … | … | … | … |
-| … | … | … | … |
+| Jakub Paluszek | A | Section_A | Nataniel Cichecki |
+| Szymon Kurek | B  | … | Jakub Paluszek |
+| Nataniel Cichecki| C | feature/akcje | Szymon Kurek |
 
 Nie zmieniamy kontraktu bez uzgodnienia. Nie formatujemy całego Program.cs.
 
