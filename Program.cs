@@ -223,9 +223,29 @@ void Rozejrzyj()
 void Idz(string kierunek)
 {
     // TODO B1: odrzuc ruch po zakonczeniu gry (return).
+    if(koniec == true){
+        Console.WriteLine("Program sie skonczyl!!!");
+        return;
+    }
     // TODO B2: policz nastepnyPokoj, nie zmieniaj jeszcze wspolnego pokoj.
+    int nastepnyPokoj = pokoj;
+    if(kierunek == "prawo"){
+        nastepnyPokoj++;
+    } else if(kierunek == "lewo"){
+        nastepnyPokoj--;
+    }else{
+        Console.WriteLine("Zly kierunek");
+        return;
+    }
     // TODO B3: odrzuc nieznany kierunek i ruch poza pokoje 1..4.
+    if(nastepnyPokoj < 1 || nastepnyPokoj > 4){
+        Console.WriteLine("Nie mozna przejsc do pokoju");
+        return;
+    }
     // TODO B4: zatwierdz pokoj, wywolaj Rozejrzyj i raz ZakonczTure.
+    pokoj = nastepnyPokoj;
+    Rozejrzyj();
+    ZakonczTure();
     Console.WriteLine("TODO B: ruch " + kierunek);
 }
 
