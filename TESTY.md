@@ -20,6 +20,10 @@ Każdą próbę zaczynamy od start. Po sekwencji wpisujemy status. Komendy z tab
 | 14 | Po końcu gry: start, status | Pokój 1, energia 10, wszystkie flagi False | Działa poprawnie, Cichecki |
 | 15 | Wpisz spacje + PRAWO + spacje | Pokój 2, energia 9; wielkość liter i skrajne spacje nie przeszkadzają | … |
 | 16 | koniec | Aplikacja wraca do terminala | Działa poprawnie. Cichecki |
+| 17 | start, karta, karta | Druga próba: karta już zabrana; energia 9. | Działa poprawnie. Cichecki |
+| 18 | start, prawo, prawo, napraw | Brak bezpiecznika; energia 8. | Działa poprawnie. Cichecki |
+| 19 | start, prawo, prawo, prawo, wyjdz | Brak karty i zasilania; energia 7. | Wypisuje tylko brak karty, energia dziala poprawnie. Cichecki |
+| 20 | start, karta, prawo, prawo, prawo, wyjdz | Brak zasilania; energia 6. | Działa poprawnie. Cichecki|
 
 ## Nasza droga zwycięska
 

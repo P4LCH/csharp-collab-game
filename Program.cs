@@ -261,27 +261,52 @@ void Akcja(string co)
     
     if (co == "karta")
     {
-        if (pokoj != 1 || karta)
+        if (pokoj != 1)
         {
-            Console.WriteLine("Tutaj nie ma karty do zabrania.");
+            Console.WriteLine("Jestes w zlym pokoju. Tutaj nie ma karty do zabrania.");
+            return;
+        }
+        if(karta)
+        {
+            Console.WriteLine("Posiadasz juz karte, nie mozesz miec wiecej niz jedna karta.");
             return;
         }
         karta = true;
         Console.WriteLine("Zabierasz karte.");
     }else if(co == "bezpiecznik")
     {
-        if (pokoj != 2 || bezpiecznik || zasilanie)
+        if (pokoj != 2)
         {
-            Console.WriteLine("Tutaj nie ma bezpiecznika do zabrania.");
+            Console.WriteLine("Jestes w zlym pokoju. Tutaj nie ma bezpiecznika do zabrania.");
+            return;
+        }
+        if(bezpiecznik)
+        {
+            Console.WriteLine("Posiadasz juz bezpiecznik, nie mozesz miec wiecej niz jeden bezpiecznik.");
+            return;
+        }
+        if(zasilanie)
+        {
+            Console.WriteLine("Wlaczyles juz zasilanie, nie potrzebujesz kolejnego bezpiecznika.");
             return;
         }
         bezpiecznik = true;
         Console.WriteLine("Zabierasz bezpiecznik.");
     }else if(co == "napraw")
     {
-        if (pokoj != 3 || !bezpiecznik || zasilanie )
+        if (pokoj != 3)
         {
-            Console.WriteLine("Tutaj nie możesz naprawić zasilania.");
+            Console.WriteLine("Jestes w zlym pokoju. Tutaj nie możesz naprawić zasilania.");
+            return;
+        }
+        if(!bezpiecznik)
+        {
+            Console.WriteLine("Nie mozesz naprawic zasilania poniewaz nie posiadasz bezpiecznika.");
+            return;
+        }
+        if(zasilanie)
+        {
+            Console.WriteLine("Naprawiles juz zasilanie, nie mozesz naprawic go ponownie.");
             return;
         }
         zasilanie = true;
@@ -289,9 +314,19 @@ void Akcja(string co)
         Console.WriteLine("Naprawiasz zasilanie.");
     }else if(co == "wyjdz")
     {
-        if (pokoj !=4 || !karta || !zasilanie)
+        if (pokoj !=4)
         {
-            Console.WriteLine("Nie możesz wyjść.");
+            Console.WriteLine("Nie możesz wyjść. Znajdujesz sie w zlym pokoju");
+            return;
+        }
+        if(!karta)
+        {
+            Console.WriteLine("Nie mozesz wyjsc. Nie posiadasz karty.");
+            return;
+        }
+        if(!zasilanie)
+        {
+            Console.WriteLine("Nie mozesz wyjsc. Zasilanie jest wylaczone.");
             return;
         }
         wygrana = true;
