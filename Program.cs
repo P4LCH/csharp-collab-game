@@ -87,12 +87,14 @@ void ZakonczTure()
 void Status()
 {
     Console.WriteLine("Pokoj: " + pokoj);
-    Console.WriteLine("Energia: " + energia + "/" + MAKS_ENERGIA);
+    Console.Write("Energia: " + energia + "/" + MAKS_ENERGIA);
+    Console.WriteLine("| Pasek energii: " + PasekEnergii());
     Console.WriteLine("Karta: " + karta);
     Console.WriteLine("Bezpiecznik: " + bezpiecznik);
     Console.WriteLine("Zasilanie: " + zasilanie);
     Console.WriteLine("Koniec: " + koniec);
     Console.WriteLine("Wygrana: " + wygrana);
+    
 }
 
 // SEKCJA A: INFORMACJE I MAPA. Wlasciciel: osoba A.
@@ -160,4 +162,23 @@ void Akcja(string co)
     // TODO C3: przy odmowie wypisz powod i wykonaj return.
     // TODO C4: tylko po udanej akcji wywolaj raz ZakonczTure.
     Console.WriteLine("TODO C: akcja " + co);
+}
+
+string PasekEnergii()
+{
+    string pasek = "";
+
+    for(int i = 1; i <= MAKS_ENERGIA; i++)
+    {
+        if(i <= energia)
+        {
+            pasek = pasek + "#";
+        }
+        else
+        {
+            pasek = pasek + ".";
+        }
+    }
+
+    return pasek;
 }
