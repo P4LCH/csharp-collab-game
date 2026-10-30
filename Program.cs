@@ -89,6 +89,7 @@ void Status()
     Console.WriteLine("Pokoj: " + pokoj);
     Console.Write("Energia: " + energia + "/" + MAKS_ENERGIA);
     Console.WriteLine("| Pasek energii: " + PasekEnergii());
+    Console.WriteLine("Ocena zapasu: " + OcenaEnergii(energia));
     Console.WriteLine("Karta: " + karta);
     Console.WriteLine("Bezpiecznik: " + bezpiecznik);
     Console.WriteLine("Zasilanie: " + zasilanie);
@@ -122,6 +123,7 @@ void Rozejrzyj()
     Console.WriteLine("Jestes w: " + NazwaPokoju(pokoj));
     // TODO A4: opis zalezy od pokoju oraz obecnosci przedmiotow/zasilania.
     Console.WriteLine("TODO A: opis pokoju.");
+    
 }
 
 // SEKCJA B: RUCH. Wlasciciel: osoba B.
@@ -181,4 +183,29 @@ string PasekEnergii()
     }
 
     return pasek;
+}
+
+string OcenaEnergii(int wartosc)
+{
+    if (wartosc < 0 || wartosc > MAKS_ENERGIA)
+    {
+        return "Nieprawidłowa wartość";
+    }
+
+    if (wartosc >= 7)
+    {
+        return "Duży zapas";
+    }
+
+    if (wartosc >= 4)
+    {
+        return "Uważaj na zbędne ruchy";
+    }
+
+    if (wartosc >= 1)
+    {
+        return "Niski zapas";
+    }
+
+    return "Brak energii";
 }
