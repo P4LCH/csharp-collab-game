@@ -2,6 +2,8 @@ using System;
 
 // WSPOLNY KONTRAKT. Wszystkie dane inicjalizujemy przed Start().
 const int MAKS_ENERGIA = 10;
+bool[]odwiedzonePokoje = new bool[4];
+string[]nazwyPokoi = {"Recepcja","Magazyn","Serwerownia","Wyjście"};
 int pokoj = 1;
 int energia = MAKS_ENERGIA;
 bool karta = false;
@@ -48,6 +50,7 @@ while (true)
         case "bezpiecznik": Akcja("bezpiecznik"); break;
         case "napraw": Akcja("napraw"); break;
         case "wyjdz": Akcja("wyjdz"); break;
+        case "odkrycia": PokazOdkrycia(); break;
         default: Console.WriteLine("Nieznane polecenie. Wpisz pomoc."); break;
     }
 }
@@ -136,7 +139,8 @@ void Pomoc()
     Console.WriteLine("napraw - próba naprawy zasilania ,");
     Console.WriteLine("wyjdz - próba otwarcia drzwi(czynność w grze, nie zamyka gry),");
     Console.WriteLine("start - nowa rozgrywka(reset do początku), ");
-    Console.WriteLine("koniec-Zamknięcie gry.");
+    Console.WriteLine("koniec-Zamknięcie gry,");
+    Console.WriteLine("odkrycia - Odkryte pomieszczenia.");
 }
 
 void Mapa()
@@ -340,3 +344,32 @@ void Akcja(string co)
 
     ZakonczTure();
 }
+
+int PoliczOdwiedzone()
+{
+        int odwiedzone = 0;
+        for (int i = 0; i < odwiedzonePokoje.Length; i++)
+        {
+            if(odwiedzonePokoje[i])
+            {
+                odwiedzone++;
+            }
+        }
+        return odwiedzone;
+}
+
+void PokazOdkrycia()
+{
+    Console.WriteLine("Liczba odwiedzonych pokoi: " + PoliczOdwiedzone() + "na 4");
+
+    
+        for (int i = 0; i < odwiedzonePokoje.Length; i++)
+        {
+            if(odwiedzonePokoje[i])
+            {
+                Console.WriteLine("Nazwa pokoju: " + nazwyPokoi[i]);
+            }
+        }
+
+}
+
