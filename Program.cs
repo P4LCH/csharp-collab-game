@@ -1,7 +1,7 @@
 
 using System;
 
-// WSPOLNY KONTRAKT. Wszystkie dane inicjalizujemy przed Start().lekkie poprawki do kodu.
+// WSPOLNY KONTRAKT. Wszystkie dane inicjalizujemy przed Start().
 const int MAKS_ENERGIA = 10;
 int pokoj = 1;
 int energia = MAKS_ENERGIA;
@@ -10,19 +10,7 @@ bool bezpiecznik = false;
 bool zasilanie = false;
 bool koniec = false;
 bool wygrana = false;
-bool[] odwiedzony = new bool[4];
 
-
-//SEKCJA A: DANE MAPY.
-
-
-string[] NazwyPokoi =
-{
-    "Recepcja",
-    "Magazyn",
-    "Serwerownia",
-    "Wyjscie"
-};
 // SEKCJA 0: GOTOWY SILNIK NAUCZYCIELA.
 Start();
 
@@ -73,7 +61,6 @@ while (true)
 
 void Start()
 {
-
     pokoj = 1;
     energia = MAKS_ENERGIA;
     karta = false;
@@ -82,14 +69,6 @@ void Start()
     koniec = false;
     wygrana = false;
 
-
-    for(int i =0; i<odwiedzony.Length; i++)
-    {
-        odwiedzony[i] = false;
-
-    }
-    odwiedzony[0] = true;
-    
     Console.WriteLine("UCIECZKA Z SERWEROWNI: PIATEK, 16:59.");
     Console.WriteLine("Administrator napisal: u mnie dziala. Drzwi twierdza inaczej.");
     Console.WriteLine("Masz " + MAKS_ENERGIA + " energii. Wpisz pomoc. Koniec zamyka program.");
@@ -133,11 +112,26 @@ void Status()
 
 string NazwaPokoju(int numer)
 {
-    if (numer<1||numer>4){
-        return "Nieznany pokój";
+    if (numer == 1)
+    {
+        return "Recepcja";
     }
-    return NazwyPokoi[numer -1];
-   
+    else if (numer == 2)
+    {
+        return "Magazyn";
+    }
+    else if (numer == 3)
+    {
+        return "Serwerownia";
+    }
+    else if (numer == 4)
+    {
+        return "Wyjscie";
+    }
+    else
+    {
+        return "Nieznany pokoj";
+    }
 }
 
 void Pomoc()
@@ -159,24 +153,13 @@ void Mapa()
 {
     for (int numer = 1; numer <= 4; numer++)
     {
-        int indeks = numer - 1;
+        string wiersz = numer + ". " + NazwaPokoju(numer);
 
-        string wiersz = numer + ". ";
-
-        if (odwiedzony [indeks])
+        if (numer == pokoj)
         {
-            wiersz += NazwaPokoju(numer);
-        }
-        else
-        {
-            wiersz += "nieodkryty pokój";
+            wiersz = wiersz + " <--- jestes tutaj";
         }
 
-        if(numer == pokoj)
-        {
-            wiersz +="<-- Jesteś tutaj";
-
-        }
         Console.WriteLine(wiersz);
     }
 }
@@ -275,7 +258,7 @@ void Idz(string kierunek)
     }
 
     pokoj = nastepnyPokoj;
-    odwiedzony[pokoj - 1] = true;
+
     Rozejrzyj();
     ZakonczTure();
 }
@@ -341,3 +324,5 @@ void Akcja(string co)
 
     ZakonczTure();
 }
+
+//sdkjds
