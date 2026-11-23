@@ -1,4 +1,3 @@
-
 using System;
 
 // WSPOLNY KONTRAKT. Wszystkie dane inicjalizujemy przed Start().
@@ -10,6 +9,7 @@ bool bezpiecznik = false;
 bool zasilanie = false;
 bool koniec = false;
 bool wygrana = false;
+DziennikWyprawy dziennikWyprawy = new DziennikWyprawy();
 
 // SEKCJA 0: GOTOWY SILNIK NAUCZYCIELA.
 Start();
@@ -45,6 +45,8 @@ while (true)
         case "pomoc": Pomoc(); break;
         case "status": Status(); break;
         case "mapa": Mapa(); break;
+        case "odkrycia": PokazOdkrycia(); break;
+        case "dziennik": PokazDziennik(); break;
         case "opis": Rozejrzyj(); break;
         case "lewo": Idz("lewo"); break;
         case "prawo": Idz("prawo"); break;
@@ -68,6 +70,7 @@ void Start()
     zasilanie = false;
     koniec = false;
     wygrana = false;
+    dziennikWyprawy.Reset();
 
     Console.WriteLine("UCIECZKA Z SERWEROWNI: PIATEK, 16:59.");
     Console.WriteLine("Administrator napisal: u mnie dziala. Drzwi twierdza inaczej.");
@@ -139,6 +142,8 @@ void Pomoc()
     Console.WriteLine("pomoc - wypisuje komendy wykorzystywane w grze");
     Console.WriteLine("status - dane rozgrywki");
     Console.WriteLine("mapa - cztery pokoje i znacznik pozycji");
+    Console.WriteLine("odkrycia - liczba odwiedzonych pokoi");
+    Console.WriteLine("dziennik - do trzech ostatnich udanych czynnosci");
     Console.WriteLine("opis - rozejrzenie sie w aktualnym pokoju");
     Console.WriteLine("lewo/prawo - ruch o jeden pokoj");
     Console.WriteLine("karta - proba zabrania karty");
@@ -155,12 +160,36 @@ void Mapa()
     {
         string wiersz = numer + ". " + NazwaPokoju(numer);
 
+        if (dziennikWyprawy.CzyOdwiedzono(numer))
+        {
+            wiersz = wiersz + " [odwiedzony]";
+        }
+
         if (numer == pokoj)
         {
             wiersz = wiersz + " <--- jestes tutaj";
         }
 
         Console.WriteLine(wiersz);
+    }
+}
+
+void PokazOdkrycia()
+{
+    Console.WriteLine("Odwiedzone pokoje: " + dziennikWyprawy.LiczbaOdwiedzonych + "/4");
+}
+
+void PokazDziennik()
+{
+    if (dziennikWyprawy.LiczbaWpisow == 0)
+    {
+        Console.WriteLine("Dziennik jest pusty.");
+        return;
+    }
+
+    for (int i = 0; i < dziennikWyprawy.LiczbaWpisow; i++)
+    {
+        Console.WriteLine(dziennikWyprawy.PobierzWpis(i));
     }
 }
 
@@ -258,6 +287,8 @@ void Idz(string kierunek)
     }
 
     pokoj = nastepnyPokoj;
+    dziennikWyprawy.Odwiedz(pokoj);
+    dziennikWyprawy.DodajWpis("Ruch do pokoju " + pokoj + " (" + NazwaPokoju(pokoj) + ")");
 
     Rozejrzyj();
     ZakonczTure();
@@ -272,6 +303,7 @@ void Akcja(string co)
         Console.WriteLine("Gra zakonczona.");
         return;
     }
+
     if (co == "karta")
     {
         if (pokoj != 1 || karta)
@@ -282,6 +314,7 @@ void Akcja(string co)
 
         karta = true;
         Console.WriteLine("Zabierasz karte.");
+        dziennikWyprawy.DodajWpis("Zabrano karte");
     }
     else if (co == "bezpiecznik")
     {
@@ -293,6 +326,7 @@ void Akcja(string co)
 
         bezpiecznik = true;
         Console.WriteLine("Zabierasz bezpiecznik.");
+        dziennikWyprawy.DodajWpis("Zabrano bezpiecznik");
     }
     else if (co == "napraw")
     {
@@ -305,6 +339,7 @@ void Akcja(string co)
         zasilanie = true;
         bezpiecznik = false;
         Console.WriteLine("Naprawiasz zasilanie.");
+        dziennikWyprawy.DodajWpis("Naprawiono zasilanie");
     }
     else if (co == "wyjdz")
     {
@@ -315,6 +350,7 @@ void Akcja(string co)
         }
 
         wygrana = true;
+        dziennikWyprawy.DodajWpis("Udane wyjscie");
     }
     else
     {
@@ -324,5 +360,3 @@ void Akcja(string co)
 
     ZakonczTure();
 }
-
-//sdkjds
