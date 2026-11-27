@@ -1,6 +1,5 @@
 using System;
 
-// WSPOLNY KONTRAKT. Wszystkie dane inicjalizujemy przed Start().
 const int MAKS_ENERGIA = 10;
 int pokoj = 1;
 int energia = MAKS_ENERGIA;
@@ -11,7 +10,6 @@ bool koniec = false;
 bool wygrana = false;
 DziennikWyprawy dziennikWyprawy = new DziennikWyprawy();
 
-// SEKCJA 0: GOTOWY SILNIK NAUCZYCIELA.
 Start();
 
 while (true)
@@ -111,7 +109,6 @@ void Status()
     Console.WriteLine("Wygrana: " + wygrana);
 }
 
-// SEKCJA A: INFORMACJE I MAPA.
 
 string NazwaPokoju(int numer)
 {
@@ -254,7 +251,6 @@ void Rozejrzyj()
     }
 }
 
-// SEKCJA B: RUCH.
 
 void Idz(string kierunek)
 {
@@ -294,7 +290,6 @@ void Idz(string kierunek)
     ZakonczTure();
 }
 
-// SEKCJA C: PRZEDMIOTY I WYGRANA.
 
 void Akcja(string co)
 {
